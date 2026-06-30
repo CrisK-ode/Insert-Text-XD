@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Survivor Roguelike</title>
+	<link rel="stylesheet" href="decoracion.css">
+</head>
+<body>
+	<div id="ui">
+		<header id="top">
+			<div id="info">
+				<span id="wave">Oleada: 0</span>
+				<span id="level">Nivel: 1</span>
+				<span id="hp">Vida: 100</span>
+			</div>
+			<div id="stats"></div>
+		</header>
+
+		<main id="arena">
+			<canvas id="game"></canvas>
+			<div id="pauseBadge" class="badge hidden">Pausa</div>
+		</main>
+
+		<footer id="bottom">
+			<div id="xpbar" aria-label="Experiencia">
+				<div id="xpfill"></div>
+			</div>
+			<div id="log">Listo para empezar.</div>
+		</footer>
+	</div>
+
+	<div id="toastContainer"></div>
+
+	<!-- Controles móviles: joystick izquierdo y zona derecha para apuntar/disparar -->
+	<div id="mobileControls">
+		<div id="leftStick" class="stick" aria-hidden="true">
+			<div class="knob"></div>
+		</div>
+		<div id="rightPad" class="pad" aria-hidden="true">
+			<button id="fireButton">Disparar</button>
+		</div>
+	</div>
+
+	<div id="startScreen" class="overlay active">
+		<div class="menu">
+			<h1>Survivor Roguelike</h1>
+			<p>Muévete con WASD o flechas. Apunta y dispara manteniendo clic. Pausa con P.</p>
+			<button id="startButton">Iniciar partida</button>
+		</div>
+	</div>
+
+	<div id="deathScreen" class="overlay hidden">
+		<div class="menu">
+			<h1>Game Over</h1>
+			<p id="deathText">Tus estadísticas se mostrarán aquí.</p>
+			<button id="retryButton">Reintentar</button>
+		</div>
+	</div>
+
+	<script src="funcionamiento.js"></script>
+</body>
+</html>

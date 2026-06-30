@@ -1,0 +1,165 @@
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0}
+body{
+	background:#090d12;
+	color:#e9f0f7;
+	font-family:Inter,Segoe UI,Arial,sans-serif;
+	overflow:hidden;
+}
+#ui{display:grid;grid-template-rows:auto 1fr auto;height:100vh;min-height:100vh}
+#top{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:12px;
+	padding:10px 14px;
+	background:#101820;
+	border-bottom:1px solid rgba(255,255,255,0.08);
+}
+#info{display:flex;gap:8px;flex-wrap:wrap}
+#info span{
+	min-width:94px;
+	padding:7px 10px;
+	border:1px solid rgba(255,255,255,0.08);
+	border-radius:6px;
+	background:#16212b;
+	color:#f5f8fb;
+	font-weight:700;
+	font-size:14px;
+	text-align:center;
+}
+#arena{position:relative;min-height:0;background:#0b1118}
+#game{
+	display:block;
+	width:100%;
+	height:100%;
+	cursor:crosshair;
+	touch-action:none;
+	background:#0b1118;
+}
+#bottom{
+	padding:10px 14px 12px;
+	background:#101820;
+	border-top:1px solid rgba(255,255,255,0.08);
+}
+#xpbar{
+	width:100%;
+	height:14px;
+	background:#1b2834;
+	border:1px solid rgba(255,255,255,0.08);
+	border-radius:7px;
+	overflow:hidden;
+}
+#xpfill{
+	height:100%;
+	width:0;
+	background:linear-gradient(90deg,#7bdc79,#5ab9f7,#f2c866);
+	transition:width 0.16s ease;
+}
+#log{margin-top:7px;min-height:18px;color:#cdd8e4;font-size:14px}
+#stats{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+.stat{
+	min-width:86px;
+	padding:7px 9px;
+	border-radius:6px;
+	border:1px solid rgba(255,255,255,0.08);
+	background:#16212b;
+	text-align:center;
+	font-size:13px;
+	line-height:1.2;
+}
+.stat strong{display:block;color:#91d7ff;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+#toastContainer{
+	position:fixed;
+	top:16px;
+	left:16px;
+	display:flex;
+	flex-direction:column;
+	gap:8px;
+	z-index:20;
+	pointer-events:none;
+}
+.toast{
+	min-width:220px;
+	max-width:min(360px,calc(100vw - 32px));
+	padding:10px 13px;
+	border-radius:7px;
+	border:1px solid rgba(122,211,137,0.42);
+	background:rgba(17,27,38,0.96);
+	color:#f8fbff;
+	box-shadow:0 12px 32px rgba(0,0,0,0.36);
+	font-size:14px;
+	opacity:0;
+	transform:translateX(-24px);
+	animation:toastIn 0.24s ease forwards;
+}
+@keyframes toastIn{to{opacity:1;transform:translateX(0)}}
+.toast.hide{animation:toastOut 0.24s ease forwards}
+@keyframes toastOut{to{opacity:0;transform:translateX(24px)}}
+.overlay{
+	position:fixed;
+	inset:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:24px;
+	background:rgba(6,10,15,0.9);
+	z-index:15;
+	transition:opacity 0.22s ease;
+}
+.overlay.hidden{opacity:0;pointer-events:none}
+.overlay.active{opacity:1;pointer-events:auto}
+.menu{
+	width:min(390px,100%);
+	padding:24px;
+	border-radius:8px;
+	border:1px solid rgba(255,255,255,0.1);
+	background:#111a23;
+	box-shadow:0 24px 70px rgba(0,0,0,0.5);
+	text-align:center;
+}
+.menu h1{margin:0 0 10px;color:#ffffff;font-size:30px;letter-spacing:0}
+.menu p{margin:0 0 20px;color:#cbd6e2;line-height:1.55}
+.menu button{
+	cursor:pointer;
+	padding:12px 18px;
+	border:0;
+	border-radius:7px;
+	background:#69d287;
+	color:#07110b;
+	font-weight:800;
+	font-size:15px;
+}
+.menu button:hover{filter:brightness(1.08)}
+.badge{
+	position:absolute;
+	top:12px;
+	left:50%;
+	transform:translateX(-50%);
+	padding:8px 14px;
+	border-radius:6px;
+	border:1px solid rgba(255,255,255,0.12);
+	background:rgba(16,24,32,0.9);
+	color:#ffffff;
+	font-weight:800;
+	letter-spacing:.04em;
+	text-transform:uppercase;
+}
+.hidden{display:none}
+
+@media (max-width:720px){
+	#top{align-items:flex-start;flex-direction:column}
+	#stats{justify-content:flex-start;width:100%}
+	.stat{flex:1;min-width:68px}
+	#info span{flex:1;min-width:88px}
+}
+
+/* Mobile controls */
+#mobileControls{display:none}
+@media (max-width:900px){
+	body.game-active #mobileControls{display:block;position:absolute;inset:unset;bottom:16px;left:0;right:0;pointer-events:auto;z-index:14}
+	.stick{position:fixed;left:18px;bottom:18px;width:110px;height:110px;border-radius:999px;background:rgba(8,12,16,0.55);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;touch-action:none}
+	.stick .knob{width:44px;height:44px;border-radius:999px;background:linear-gradient(180deg,#7bdc79,#5ab9f7);box-shadow:0 8px 22px rgba(0,0,0,0.36);pointer-events:none}
+	.pad{position:fixed;right:18px;bottom:18px;width:120px;height:120px;border-radius:14px;background:rgba(8,12,16,0.48);display:flex;align-items:center;justify-content:center;touch-action:none;z-index:14}
+	#fireButton{width:84px;height:44px;border-radius:8px;border:0;background:#ff6b6b;color:white;font-weight:800;font-size:15px}
+}
