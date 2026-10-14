@@ -51,7 +51,7 @@ let bossSpawned = false;
 let gameActive = false;
 let paused = false;
 let auraFight = null;
-const forceBossTest = false;
+const forceBossTest = true;
 
 function loadSprite(src){
 	const image = new Image();
@@ -240,7 +240,7 @@ function createPlayer(){
 		slowTimer: 0,
 		slowMultiplier: 1,
 		fireCooldown: 140,
-		bulletSize: 99,
+		bulletSize: 910,
 		bulletSpeed: 220,
 		lastShot: 0,
 		level: 100,
